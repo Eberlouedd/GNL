@@ -12,5 +12,6 @@ int     ft_strlen(char *str);
 char	*ft_strdup(char *src);
 char	*create_line(char *str);
 char	*clean_stock(char *str);
+int     test_n(char *str);
 
 #endif

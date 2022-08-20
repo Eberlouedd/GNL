@@ -9,9 +9,7 @@ int	ft_strlen(char *str)
 		return (0);
 	i = 0;
 	while (str[i])
-	{
 		i++;
-	}
 	return (i);
 }
 
@@ -96,16 +94,21 @@ char	*clean_stock(char *str)
 
 	i = 0;
 	j = 0;
-	while (str[i] != '\n')
-		i++;
-	i++;
-	new = malloc(ft_strlen(str) - i + 1);
-	new[ft_strlen(str) - i] = '\0';
-	while (str[i])
+	if (!test_n(str))
+		new = NULL;
+	else
 	{
-		new[j] = str[i];
-		j++;
+		while (str[i] != '\n' && str[i])
+			i++;
 		i++;
+		new = malloc(ft_strlen(str) - i + 1);
+		new[ft_strlen(str) - i] = '\0';
+		while (str[i])
+		{
+			new[j] = str[i];
+			j++;
+			i++;
+		}
 	}
 	free(str);
 	return (new);

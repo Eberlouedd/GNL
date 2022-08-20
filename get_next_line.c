@@ -38,7 +38,6 @@ char	*get_next_line(int fd)
 			}
 			else
 			{
-				free(stock);
 				return (NULL);
 			}
 		}
@@ -53,6 +52,10 @@ int main()
 {
 	int	fd;
 	fd = open("test.txt", O_RDONLY);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
 	printf("%s", get_next_line(fd));
