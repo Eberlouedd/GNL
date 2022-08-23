@@ -29,10 +29,12 @@ char	*get_next_line(int fd)
 		cursor = malloc(11);
 		while (ret = read(fd, cursor, 10))
 		{
+			printf("%d\n", ret);
 			if (ret)
 			{
 				cursor[ret] = '\0';
 				stock = ft_strjoin(stock, cursor);
+				printf("%s\n", cursor);
 				if(test_n(cursor))
 					break;
 			}
@@ -53,12 +55,6 @@ int main()
 	int	fd;
 	fd = open("test.txt", O_RDONLY);
 	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	printf("%s", get_next_line(fd));
 	close(fd);
 	return 0;
 }

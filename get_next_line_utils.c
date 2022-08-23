@@ -71,6 +71,7 @@ char	*create_line(char *str)
 	int		i;
 	int		mem;
 
+	i = 0;
 	while(str[i] != '\n')
 		i++;
 	i++;
