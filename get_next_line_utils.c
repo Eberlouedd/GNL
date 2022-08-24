@@ -62,6 +62,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		i++;
 		j++;
 	}
+	free(s1);
 	return (new_chain);
 }
 
@@ -86,8 +87,6 @@ char	*create_line(char *str)
 		line[i] = str[i];
 		i++;
 	}
-	if(!test_n(line))
-		line = ft_strjoin(line, "\n");
 	return (line);
 }
 

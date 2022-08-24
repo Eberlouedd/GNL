@@ -1,6 +1,5 @@
 #ifndef GET_NEXT_LINE_H
 # define  GET_NEXT_LINE_H
-# define BUFFER_SIZE 30
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/types.h>
@@ -13,5 +12,5 @@ char	*ft_strdup(char *src);
 char	*create_line(char *str);
 char	*clean_stock(char *str);
 int     test_n(char *str);
-
+char	*get_next_line(int fd);
 #endif

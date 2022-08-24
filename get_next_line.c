@@ -26,29 +26,17 @@ char	*get_next_line(int fd)
 
 	if (!test_n(stock))
 	{
-		cursor = malloc(11);
-		while (ret = read(fd, cursor, 10))
+		cursor = malloc(BUFFER_SIZE + 1);
+		while ((ret = read(fd, cursor, BUFFER_SIZE)))
 		{
 			cursor[ret] = '\0';
 			stock = ft_strjoin(stock, cursor);
 			if(test_n(cursor))
 				break;
 		}
+		free(cursor);
 	}
 	line = create_line(stock);
 	stock = clean_stock(stock);
-	free(cursor);
 	return (line);
-}
-
-int main()
-{
-	int	fd;
-	fd = open("test.txt", O_RDONLY);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	printf("%s", get_next_line(fd));
-	close(fd);
-	return 0;
 }
