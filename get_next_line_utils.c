@@ -71,8 +71,10 @@ char	*create_line(char *str)
 	int		i;
 	int		mem;
 
+	if (!str)
+		return (NULL);
 	i = 0;
-	while(str[i] != '\n')
+	while(str[i] != '\n' && str[i])
 		i++;
 	i++;
 	line = malloc(i + 1);
@@ -84,6 +86,8 @@ char	*create_line(char *str)
 		line[i] = str[i];
 		i++;
 	}
+	if(!test_n(line))
+		line = ft_strjoin(line, "\n");
 	return (line);
 }
 
@@ -95,7 +99,7 @@ char	*clean_stock(char *str)
 
 	i = 0;
 	j = 0;
-	if (!test_n(str))
+	if (!test_n(str) || !str)
 		new = NULL;
 	else
 	{
