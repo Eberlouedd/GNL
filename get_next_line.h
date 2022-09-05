@@ -13,4 +13,6 @@ char	*create_line(char *str);
 char	*clean_stock(char *str);
 int     test_n(char *str);
 char	*get_next_line(int fd);
+int		formate_line(char *str);
+
 #endif

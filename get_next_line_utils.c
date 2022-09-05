@@ -98,7 +98,7 @@ char	*clean_stock(char *str)
 
 	i = 0;
 	j = 0;
-	if (!test_n(str) || !str)
+	if (!test_n(str) || !str || formate_line(str))
 		new = NULL;
 	else
 	{
