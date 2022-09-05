@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kyacini <kyacini@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 13:45:26 by kyacini           #+#    #+#             */
+/*   Updated: 2022/09/05 13:45:45 by kyacini          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
-#include <stdio.h>
 
 int	ft_strlen(char *str)
 {
@@ -75,14 +86,14 @@ char	*create_line(char *str)
 	if (!str)
 		return (NULL);
 	i = 0;
-	while(str[i] != '\n' && str[i])
+	while (str[i] != '\n' && str[i])
 		i++;
 	i++;
 	line = malloc(i + 1);
 	line[i] = '\0';
 	mem = i;
 	i = 0;
-	while(i < mem)
+	while (i < mem)
 	{
 		line[i] = str[i];
 		i++;
@@ -93,7 +104,7 @@ char	*create_line(char *str)
 char	*clean_stock(char *str)
 {
 	char	*new;
-	int 	i;
+	int		i;
 	int		j;
 
 	i = 0;

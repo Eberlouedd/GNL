@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kyacini <kyacini@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 13:44:42 by kyacini           #+#    #+#             */
+/*   Updated: 2022/09/05 14:23:32 by kyacini          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
-#include <stdio.h>
 
 int	test_n(char *str)
 {
@@ -8,9 +19,9 @@ int	test_n(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	while(str[i])
+	while (str[i])
 	{
-		if(str[i] == '\n')
+		if (str[i] == '\n')
 			return (1);
 		i++;
 	}
@@ -30,11 +41,11 @@ int	formate_line(char *str)
 	{
 		if (str[i] == '\n')
 			n++;
-		if(n > 1)
+		if (n > 1)
 			return (0);
 		i++;
 	}
-	if(str[i - 1] == '\n')
+	if (str[i - 1] == '\n')
 		return (1);
 	return (0);
 }
@@ -46,15 +57,19 @@ char	*get_next_line(int fd)
 	static char	*stock = NULL;
 	int			ret;
 
+	ret = 1;
 	if (!test_n(stock))
 	{
 		cursor = malloc(BUFFER_SIZE + 1);
-		while ((ret = read(fd, cursor, BUFFER_SIZE)) > 0)
+		while (ret > 0)
 		{
+			ret = read(fd, cursor, BUFFER_SIZE);
+			if (ret <= 0)
+				break ;
 			cursor[ret] = '\0';
 			stock = ft_strjoin(stock, cursor);
-			if(test_n(cursor))
-				break;
+			if (test_n(cursor))
+				break ;
 		}
 		free(cursor);
 	}
