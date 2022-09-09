@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyacini <kyacini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:44:42 by kyacini           #+#    #+#             */
-/*   Updated: 2022/09/09 21:01:53 by kyacini          ###   ########.fr       */
+/*   Updated: 2022/09/09 21:00:03 by kyacini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 int	test_n(char *str)
 {
@@ -64,13 +65,13 @@ char	*get_next_line(int fd)
 {
 	char		*cursor;
 	char		*line;
-	static char	*stock = NULL;
+	static char	*stock[4096];
 	int			ret;
 
 	if (BUFFER_SIZE < 0)
 		return (NULL);
 	ret = 1;
-	if (!test_n(stock))
+	if (!test_n(stock[fd]))
 	{
 		cursor = pmalloc(BUFFER_SIZE + 1);
 		while (ret > 0)
@@ -79,11 +80,12 @@ char	*get_next_line(int fd)
 			if (ret <= 0)
 				break ;
 			cursor[ret] = '\0';
-			stock = ft_strjoin(stock, cursor);
+			stock[fd] = ft_strjoin(stock[fd], cursor);
 			if (test_n(cursor))
 				break ;
 		}
 		free(cursor);
 	}
-	return (line = create_line(stock), stock = clean_stock(stock), line);
+	return (line = create_line(stock[fd]), stock[fd] = clean_stock(stock[fd]),
+		line);
 }

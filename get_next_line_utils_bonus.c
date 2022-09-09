@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyacini <kyacini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:45:26 by kyacini           #+#    #+#             */
-/*   Updated: 2022/09/09 20:37:51 by kyacini          ###   ########.fr       */
+/*   Updated: 2022/09/09 20:38:13 by kyacini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ char	*create_line(char *str)
 	while (str[i] != '\n' && str[i])
 		i++;
 	i++;
-	line = pmalloc(i + 1);
+	line = malloc(i + 1);
+	if (!line)
+		return (NULL);
 	line[i] = '\0';
 	mem = i;
 	i = 0;
